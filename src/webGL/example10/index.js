@@ -27,10 +27,10 @@ const transformSettings = {
 	rotationAngle: 0.0
 }
 
-gui.add(transformSettings, 'translateX', -1, 1);
-gui.add(transformSettings, 'translateY', -1, 1);
+gui.add(transformSettings, 'translateX', -1.0, 1.0);
+gui.add(transformSettings, 'translateY', -1.0, 1.0);
 
-gui.add(transformSettings, 'scale', -1, 1);
+gui.add(transformSettings, 'scale', -1.0, 1.0);
 
 gui.add(transformSettings, 'rotationAngle', -Math.PI, Math.PI);
 //Draw loop
