@@ -1,8 +1,7 @@
 const fragmentShaderSrc = `      
-		precision mediump float;   
-		varying vec3 vColor;       
+		precision mediump float;     
         void main () {               
-          gl_FragColor = vec4(vColor, 1.0); 
+          gl_FragColor = vec4(0.75,0.75,0.75,1.0); 
         }                            
 	  `;
 
