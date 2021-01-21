@@ -1,6 +1,6 @@
 export default class Triangle
 {
-	constructor(gl, centerX, centerY)
+	constructor(gl, centerX, centerY, color)
 	{
 		this.vertexAttributesData = new Float32Array([
 			//  x , y,  z 
@@ -10,6 +10,7 @@ export default class Triangle
 		]);
 
 		this.gl = gl;
+		this.color = color;
 
 		this.vertexAttributesBuffer = this.gl.createBuffer();
 		if (!this.vertexAttributesBuffer)
@@ -28,6 +29,9 @@ export default class Triangle
 		const aPosition = shader.attribute("aPosition");
 		this.gl.enableVertexAttribArray(aPosition);
 		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, 3 * this.vertexAttributesData.BYTES_PER_ELEMENT, 0);
+
+		const uPrimitiveColor = shader.uniform("uPrimitiveColor");		
+		shader.setUniform3f(uPrimitiveColor, this.color);
 
 		this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, this.vertexAttributesData.length / (elementPerVertex));
 	}

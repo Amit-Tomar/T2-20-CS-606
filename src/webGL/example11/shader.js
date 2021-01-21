@@ -60,6 +60,11 @@ export default class Shader
 		this.gl.uniform4f(uniformLocation, ...vec4);
 	}
 
+	setUniform3f(uniformLocation, vec3)
+	{
+		this.gl.uniform3f(uniformLocation, ...vec3);
+	}
+
 	use()
 	{
 		this.gl.useProgram(this.program);
