@@ -21,18 +21,31 @@ let rotationAxis = vec3.create();
 let scale = vec3.create();
 
 const transformSettings = {
-	scale :1.0,
-	translateX :0.0,
-	translateY :0.0,
+	scale: 1.0,
+	translateX: 0.0,
+	translateY: 0.0,
 	rotationAngle: 0.0
 }
 
-gui.add(transformSettings, 'translateX', -1, 1);
-gui.add(transformSettings, 'translateY', -1, 1);
+gui.add(transformSettings, 'translateX', -1.0, 1.0).step(0.01).onChange(function ()
+{
+	mesh.getTransformedVertexPositions();
+});
+gui.add(transformSettings, 'translateY', -1.0, 1.0).step(0.01).onChange(function ()
+{
+	mesh.getTransformedVertexPositions();
+});
 
-gui.add(transformSettings, 'scale', -1, 1);
+gui.add(transformSettings, 'scale', -1.0, 1.0).step(0.01).onChange(function ()
+{
+	mesh.getTransformedVertexPositions();
+});
 
-gui.add(transformSettings, 'rotationAngle', -Math.PI, Math.PI);
+gui.add(transformSettings, 'rotationAngle', -Math.PI, Math.PI).step(0.01).onChange(function ()
+{
+	mesh.getTransformedVertexPositions();
+});
+
 //Draw loop
 function animate()
 {
