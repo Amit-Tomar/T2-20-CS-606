@@ -33,18 +33,21 @@ export default class Mesh
 
 	draw(shader)
 	{
-		let elementPerVertex = 3;
+		let positionElementPerVertex = 3;
+		let colorElementPerVertex = 3;
 		
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexAttributesBuffer);
 		this.gl.bufferData(this.gl.ARRAY_BUFFER, this.vertexAttributesData, this.gl.DYNAMIC_DRAW);
+
+		// Prototype : void gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
 		
 		const aPosition = shader.attribute("aPosition");
 		this.gl.enableVertexAttribArray(aPosition);
-		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, 6 * this.vertexAttributesData.BYTES_PER_ELEMENT, 0);
+		this.gl.vertexAttribPointer(aPosition, positionElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, 0);
 		
 		const aColor = shader.attribute("aColor");
 		this.gl.enableVertexAttribArray(aColor);
-		this.gl.vertexAttribPointer(aColor, elementPerVertex, this.gl.FLOAT, false, 6 * this.vertexAttributesData.BYTES_PER_ELEMENT, 3 * this.vertexAttributesData.BYTES_PER_ELEMENT);
+		this.gl.vertexAttribPointer(aColor, colorElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, positionElementPerVertex * this.vertexAttributesData.BYTES_PER_ELEMENT);
 
 		const indexBuffer = this.gl.createBuffer();
 
@@ -53,10 +56,5 @@ export default class Mesh
 
 		// draw geometry lines by indices
 		this.gl.drawElements(this.gl.LINES, this.vertexIndices.length, this.gl.UNSIGNED_SHORT, indexBuffer);
-	}
-
-	addVertex(position, color)
-	{
-		this.vertexAttributesData = new Float32Array([...this.vertexAttributesData, ...position, ...color])
 	}
 }

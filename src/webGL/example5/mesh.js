@@ -22,6 +22,8 @@ export default class Mesh
 	draw(shader)
 	{
 		let elementPerVertex = 3;
+
+		// Prototype : void gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
 		
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexAttributesBuffer);
 		this.gl.bufferData(this.gl.ARRAY_BUFFER, this.vertexAttributesData, this.gl.STATIC_DRAW);
