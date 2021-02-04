@@ -47,7 +47,8 @@ export default class Mesh
 		
 		const aColor = shader.attribute("aColor");
 		this.gl.enableVertexAttribArray(aColor);
-		this.gl.vertexAttribPointer(aColor, colorElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, positionElementPerVertex * this.vertexAttributesData.BYTES_PER_ELEMENT);
+		this.gl.vertexAttribPointer(aColor, colorElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, 
+		positionElementPerVertex * this.vertexAttributesData.BYTES_PER_ELEMENT);
 
 		const indexBuffer = this.gl.createBuffer();
 

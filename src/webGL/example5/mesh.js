@@ -21,7 +21,8 @@ export default class Mesh
 
 	draw(shader)
 	{
-		let elementPerVertex = 3;
+		let positionElementPerVertex = 3;
+		let colorElementPerVertex = 3;
 
 		// Prototype : void gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
 		
@@ -30,12 +31,17 @@ export default class Mesh
 		
 		const aPosition = shader.attribute("aPosition");
 		this.gl.enableVertexAttribArray(aPosition);
-		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, 6 * this.vertexAttributesData.BYTES_PER_ELEMENT, 0);
+		this.gl.vertexAttribPointer(aPosition, positionElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, 0);
 		
 		const aColor = shader.attribute("aColor");
 		this.gl.enableVertexAttribArray(aColor);
-		this.gl.vertexAttribPointer(aColor, elementPerVertex, this.gl.FLOAT, false, 6 * this.vertexAttributesData.BYTES_PER_ELEMENT, 3 * this.vertexAttributesData.BYTES_PER_ELEMENT);
+		this.gl.vertexAttribPointer(aColor, colorElementPerVertex, this.gl.FLOAT, false, (positionElementPerVertex + colorElementPerVertex) * this.vertexAttributesData.BYTES_PER_ELEMENT, 
+		positionElementPerVertex * this.vertexAttributesData.BYTES_PER_ELEMENT);
 
-		this.gl.drawArrays(this.gl.POINTS, 0, this.vertexAttributesData.length / (2 * elementPerVertex));
+		this.gl.drawArrays(this.gl.POINTS, 0, this.vertexAttributesData.length / (positionElementPerVertex+colorElementPerVertex));
 	}
 }
+
+
+
+

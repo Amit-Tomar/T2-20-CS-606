@@ -33,22 +33,22 @@ export default class Mesh
 
 	draw(shader)
 	{
-		let elementPerVertex = 3;
+		let elementPerVertexPosition = 3;
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexPositionBuffer);
 		this.gl.bufferData(this.gl.ARRAY_BUFFER, this.vertexPositionData, this.gl.STATIC_DRAW);
 		
 		const aPosition = shader.attribute("aPosition");
 		this.gl.enableVertexAttribArray(aPosition);
-		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, 0, 0);
+		this.gl.vertexAttribPointer(aPosition, elementPerVertexPosition, this.gl.FLOAT, false, elementPerVertexPosition * this.vertexPositionData.BYTES_PER_ELEMENT, 0);
 
-		elementPerVertex = 3;
+		let elementPerVertexColor = 3;
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.colorBuffer);
 		this.gl.bufferData(this.gl.ARRAY_BUFFER, this.vertexColorData, this.gl.STATIC_DRAW);
 		
 		const aColor = shader.attribute("aColor");
 		this.gl.enableVertexAttribArray(aColor);
-		this.gl.vertexAttribPointer(aColor, elementPerVertex, this.gl.FLOAT, false, 0, 0);
+		this.gl.vertexAttribPointer(aColor, elementPerVertexColor, this.gl.FLOAT, false, elementPerVertexColor * this.vertexColorData.BYTES_PER_ELEMENT, 0);
 
-		this.gl.drawArrays(this.gl.POINTS, 0, this.vertexPositionData.length / elementPerVertex);
+		this.gl.drawArrays(this.gl.POINTS, 0, this.vertexPositionData.length / elementPerVertexColor);
 	}
 }

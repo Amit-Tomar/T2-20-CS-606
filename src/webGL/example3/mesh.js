@@ -26,7 +26,7 @@ export default class Mesh
 		
 		const aPosition = shader.attribute("aPosition");
 		this.gl.enableVertexAttribArray(aPosition);
-		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, 0, 0);
+		this.gl.vertexAttribPointer(aPosition, elementPerVertex, this.gl.FLOAT, false, elementPerVertex * this.vertexPositionData.BYTES_PER_ELEMENT, 0);
 		
 		const vColor = shader.uniform("vColor");
 		shader.setUniform4f(vColor, new Float32Array([0.0, 1.0, 0.0, 1.0]))
