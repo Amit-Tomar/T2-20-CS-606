@@ -1,0 +1,27 @@
+#eventQueue {
+	z-index: 5;
+	position: fixed;
+	right: 10px;
+	top: 45px;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: scroll;
+  }
+  
+  #systemMode {
+	z-index: 5;
+	position: fixed;
+	right: 10px;
+  }
+  
+  #keyEvent {
+	top: 20px;
+	z-index: 5;
+	position: fixed;
+	right: 10px;
+  }
+  
+  canvas {
+	position: relative;
+  }
+  
